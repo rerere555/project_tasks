@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$db   = 'tak_project';
+$db   = 'task_project';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
