@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Вход в систему</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <style>
         body { font-family: sans-serif; line-height: 1.5; padding: 20px; max-width: 400px; margin: auto; }
         input { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
@@ -12,18 +13,7 @@
     </style>
 </head>
 <body>
-    <h1>Регистрация</h1>
-    <form action="/" method="POST">
-        <label>имя</label>
-        <input type="name" name="name" required>
-        <label>Email</label>
-        <input type="email" name="email" required>
-        
-        <label>Пароль</label>
-        <input type="password" name="password" required>
-        
-        <a href="register.200.php" type="submit" name="login">Войти</a>
-    </form>
-    <br>
+    <h1>Регистрация прошла успешна</h1>
+    <a href="osnova.php" type="submit" name="login">ок</a>
 </body>
 </html>

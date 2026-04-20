@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$db   = 'task_project';
+$db   = 'tak_project';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
@@ -14,6 +14,6 @@ $options = [
 
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (\PDOException $e) {
+} catch (PDOException $e) {
     die("Ошибка подключения: " . $e->getMessage());
 }

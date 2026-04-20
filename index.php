@@ -1,49 +1,43 @@
 <?php
 require 'dbconnect.php';
-session_start();
-
-$current_user_id = $_SESSION['user_id'];
+// session_start();$_SESSION['user_id'];
 
 $sql = "SELECT tasks.title, categories.name as category_name 
         FROM tasks 
-        LEFT JOIN categories ON tasks.category_id = categories.id 
-        WHERE tasks.user_id = ?";
+        LEFT JOIN categories ON tasks.category_id = categories.id ";
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$current_user_id]);
+$stmt->execute();
 $tasks = $stmt->fetchAll();
+
 ?>
 
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Мои задачи</title>
+    <title>Вход в систему</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
-        .task { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
-        .category { color: #666; font-size: 0.8em; text-transform: uppercase; }
-        .status { font-weight: bold; }
-        /* .done { color: green; text-decoration: line-through; } */
+        body { font-family: sans-serif; line-height: 1.5; padding: 20px; max-width: 400px; margin: auto; }
+        input { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background: #007bff; color: white; border: none; padding: 10px 15px; cursor: pointer; width: 100%; border-radius: 4px; }
+        button:hover { background: #0069d9; }
+        a {text-decoration: none; background: #007bff; color: white; border: none; padding: 10px 15px; cursor: pointer; width: 100%; border-radius: 4px; }
     </style>
 </head>
 <body>
-    <h1>Список дел</h1>
-    <a href="$">+ Добавить задачу</a>
-    <hr>
-    <?php if (empty($tasks)): ?>
-        <p>Задач пока нет. Время отдыхать!</p>
-    <?php else: ?>
-        <?php foreach ($tasks as $task): ?>
-            <div class="task">
-                <span class="category"><?= htmlspecialchars($task['category_name'] ?? 'Без категории') ?></span>
-                <h3><?= htmlspecialchars($task['title']) ?></h3>
-                <p><?= htmlspecialchars($task['description']) ?></p>
-                <p class="status <?= $task['status'] ? 'done' : '' ?>">
-                    Статус: <?= $task['status'] ? 'Выполнено' : 'В процессе' ?>
-                </p>
-                <a href="$?id=<?= $task['id'] ?>">Подробнее / Комментарии</a>
-            </div>
-        <?php endforeach; ?>
-    <?php endif; ?>
+    <h1>Вход</h1>
+    <form action="auth.php" method="POST">
+        <label>имя</label>
+        <input type="name" name="name" required>
+        <label>Email</label>
+        <input type="email" name="email" required>
+        
+        <label>Пароль</label>
+        <input type="password" name="password" required>
+        
+        <a href="osnova.php" type="submit" name="login">Войти</a>
+    </form>
+    <br>
+    <a href="register.php">Нет аккаунта? Зарегистрироваться</a>
 </body>
 </html>
